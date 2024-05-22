@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ### Postgres database for TecMatch project
+  db-tecMatch:
+    container_name: db-tecMatch
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tecMatch
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
