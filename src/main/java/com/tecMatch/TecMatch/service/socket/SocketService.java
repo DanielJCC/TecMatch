@@ -8,4 +8,5 @@ import java.util.UUID;
 public interface SocketService {
     SocketDto save(SocketToSaveDto socketToSaveDto);
     SocketDto findById(UUID idToFind);
+    void deleteAll();
 }

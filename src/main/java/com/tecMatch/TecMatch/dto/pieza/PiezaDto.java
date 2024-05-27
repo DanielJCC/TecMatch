@@ -12,7 +12,7 @@ public record PiezaDto(
         Float precio,
         Float voltaje,
         String imagen,
-        FabricanteDto fabricanteDto,
-        SocketDto socketDto
+        FabricanteDto fabricante,
+        SocketDto socket
 ) {
 }

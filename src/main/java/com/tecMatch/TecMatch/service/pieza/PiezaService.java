@@ -10,4 +10,5 @@ public interface PiezaService {
     PiezaDto save(PiezaToSaveDto piezaToSaveDto);
     PiezaDto findById(UUID idToFind);
     List<PiezaDto> findAll();
+    void deleteById(UUID idToDelete);
 }

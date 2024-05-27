@@ -25,11 +25,11 @@ public class Pieza {
     private String imagen;
 
     @ManyToOne
-    @JoinColumn(name = "id_fabricante")
+    @JoinColumn(name = "fabricante")
     private Fabricante fabricante;
 
     @ManyToOne
-    @JoinColumn(name = "socket_principal")
+    @JoinColumn(name = "socket")
     private Socket socket;
 
     @OneToMany(mappedBy = "pieza",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
@@ -40,10 +40,4 @@ public class Pieza {
 
     @OneToMany(mappedBy = "pieza",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<PiezaEnListaConstruccion> piezasEnListaConstruccion;
-
-    @OneToMany(mappedBy = "pieza",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private List<Fabricante> fabricantes;
-
-    @OneToMany(mappedBy = "pieza",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private List<Socket> sockets;
 }

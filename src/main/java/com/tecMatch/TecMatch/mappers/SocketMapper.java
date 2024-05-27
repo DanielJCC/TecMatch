@@ -12,6 +12,5 @@ import org.springframework.stereotype.Component;
 public interface SocketMapper {
     Socket DtoToEntity(SocketDto socketDto);
     SocketDto EntityToDto(Socket socket);
-    @Mapping(target = "id",ignore = true)
     Socket ToSaveDtoToEntity(SocketToSaveDto socketToSaveDto);
 }

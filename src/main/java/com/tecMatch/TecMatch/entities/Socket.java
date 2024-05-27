@@ -24,6 +24,6 @@ public class Socket {
     private List<Pieza> piezas;
 
     @ManyToOne
-    @JoinColumn(name = "tipo")
+    @JoinColumn(name = "tipoSocket")
     private TipoSocket tipoSocket;
 }

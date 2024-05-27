@@ -7,6 +7,6 @@ import java.util.UUID;
 public record SocketDto(
         UUID id,
         String nombre,
-        TipoSocketDto tipoSocketDto
+        TipoSocketDto tipoSocket
 ) {
 }

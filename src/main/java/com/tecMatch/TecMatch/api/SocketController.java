@@ -29,4 +29,9 @@ public class SocketController {
             return ResponseEntity.notFound().build();
         }
     }
+    @DeleteMapping()
+    public ResponseEntity<String> deleteAllSocket(){
+        socketService.deleteAll();
+        return ResponseEntity.ok().body("Todos los sockets fueron eliminados correctamente");
+    }
 }

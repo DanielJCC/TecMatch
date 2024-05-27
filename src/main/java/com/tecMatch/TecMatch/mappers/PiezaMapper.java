@@ -12,6 +12,5 @@ import org.springframework.stereotype.Component;
 public interface PiezaMapper {
     Pieza DtoToEntity(PiezaDto piezaDto);
     PiezaDto EntityToDto(Pieza pieza);
-    @Mapping(target = "id",ignore = true)
     Pieza ToSaveDtoToEntity(PiezaToSaveDto piezaToSaveDto);
 }

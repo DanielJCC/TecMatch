@@ -4,6 +4,6 @@ import com.tecMatch.TecMatch.dto.tipoSocket.TipoSocketDto;
 
 public record SocketToSaveDto(
         String nombre,
-        TipoSocketDto tipoSocketDto
+        TipoSocketDto tipoSocket
 ) {
 }

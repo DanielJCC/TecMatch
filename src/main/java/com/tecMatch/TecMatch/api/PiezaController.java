@@ -35,4 +35,13 @@ public class PiezaController {
             return ResponseEntity.notFound().build();
         }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") UUID id){
+        try{
+            piezaService.deleteById(id);
+            return ResponseEntity.ok().body("Pieza "+id+" eliminada correctamente");
+        }catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -26,11 +26,12 @@ public class SocketServiceImpl implements SocketService{
     }
     @Override
     public SocketDto save(SocketToSaveDto socketToSaveDto) {
-        TipoSocket tipoSocketFound = tipoSocketRepository.findById(socketToSaveDto.tipoSocketDto().id())
+        TipoSocket tipoSocketFound = tipoSocketRepository.findById(socketToSaveDto.tipoSocket().id())
                 .orElseThrow(()->new RuntimeException("Tipo de socket no encontrado"));
         Socket socketToSave = socketMapper.ToSaveDtoToEntity(socketToSaveDto);
         socketToSave.setTipoSocket(tipoSocketFound);
         Socket socketSaved = socketRepository.save(socketToSave);
+        SocketDto socketAEnviar = socketMapper.EntityToDto(socketSaved);
         return socketMapper.EntityToDto(socketSaved);
     }
 
@@ -39,5 +40,10 @@ public class SocketServiceImpl implements SocketService{
         Socket socketFound = socketRepository.findById(idToFind)
                 .orElseThrow(()->new RuntimeException("Socket no encontrado"));
         return socketMapper.EntityToDto(socketFound);
+    }
+
+    @Override
+    public void deleteAll() {
+        socketRepository.deleteAll();
     }
 }

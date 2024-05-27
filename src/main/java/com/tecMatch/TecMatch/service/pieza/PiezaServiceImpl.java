@@ -31,14 +31,15 @@ public class PiezaServiceImpl implements PiezaService{
     }
     @Override
     public PiezaDto save(PiezaToSaveDto piezaToSaveDto) {
-        Socket socketFound = socketRepository.findById(piezaToSaveDto.socketDto().id())
+        Socket socketFound = socketRepository.findById(piezaToSaveDto.socket().id())
                 .orElseThrow(()->new RuntimeException("Socket no encontrado"));
-        Fabricante fabricanteFound = fabricanteRepository.findById(piezaToSaveDto.fabricanteDto().id())
+        Fabricante fabricanteFound = fabricanteRepository.findById(piezaToSaveDto.fabricante().id())
                 .orElseThrow(()->new RuntimeException("Fabricante no encontrado"));
         Pieza piezaToSave = piezaMapper.ToSaveDtoToEntity(piezaToSaveDto);
         piezaToSave.setFabricante(fabricanteFound);
         piezaToSave.setSocket(socketFound);
         Pieza piezaSaved = piezaRepository.save(piezaToSave);
+        PiezaDto piezaMostrada = piezaMapper.EntityToDto(piezaSaved);
         return piezaMapper.EntityToDto(piezaSaved);
     }
 
@@ -53,5 +54,12 @@ public class PiezaServiceImpl implements PiezaService{
     public List<PiezaDto> findAll() {
         List<Pieza> allPiezas = piezaRepository.findAll();
         return allPiezas.stream().parallel().map(piezaMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public void deleteById(UUID idToDelete) {
+        Pieza piezaFound = piezaRepository.findById(idToDelete)
+                .orElseThrow(()->new RuntimeException("Pieza no encontrada"));
+        piezaRepository.delete(piezaFound);
     }
 }
