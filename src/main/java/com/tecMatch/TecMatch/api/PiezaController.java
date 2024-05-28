@@ -35,6 +35,15 @@ public class PiezaController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<PiezaDto> updatePieza(@PathVariable("id") UUID id,@RequestBody PiezaToSaveDto piezaToUpdate){
+        try{
+            PiezaDto piezaUpdated = piezaService.update(id,piezaToUpdate);
+            return ResponseEntity.ok().body(piezaUpdated);
+        }catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") UUID id){
         try{
@@ -43,5 +52,35 @@ public class PiezaController {
         }catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/nombre")
+    public ResponseEntity<List<PiezaDto>> findPiezaByNombreContaining(@RequestParam String contains){
+        List<PiezaDto> piezasFound = piezaService.findByNombreIgnoringCase(contains);
+        return ResponseEntity.ok().body(piezasFound);
+    }
+    @GetMapping("/modelo")
+    public ResponseEntity<List<PiezaDto>> findPiezaByModeloContaining(@RequestParam String contains){
+        List<PiezaDto> piezasFound = piezaService.findByModeloIgnoringCase(contains);
+        return ResponseEntity.ok().body(piezasFound);
+    }
+    @GetMapping("/precio")
+    public ResponseEntity<List<PiezaDto>> findPiezaByPrecioMenorQue(@RequestParam Float lessThan){
+        List<PiezaDto> piezasFound = piezaService.findByPrecioMenorQue(lessThan);
+        return ResponseEntity.ok().body(piezasFound);
+    }
+    @GetMapping("/voltaje")
+    public ResponseEntity<List<PiezaDto>> findPiezaByVoltaje(@RequestParam Float voltaje){
+        List<PiezaDto> piezasFound = piezaService.findByVoltaje(voltaje);
+        return ResponseEntity.ok().body(piezasFound);
+    }
+    @GetMapping("/fabricante/{id}")
+    public ResponseEntity<List<PiezaDto>> findByFabricanteId(@PathVariable("id") UUID fabricanteId){
+        List<PiezaDto> piezasFound = piezaService.findByFabricanteId(fabricanteId);
+        return ResponseEntity.ok().body(piezasFound);
+    }
+    @GetMapping("/socket/{id}")
+    public ResponseEntity<List<PiezaDto>> findBySocketId(@PathVariable("id") UUID socketId){
+        List<PiezaDto> piezasFound = piezaService.findBySocketId(socketId);
+        return ResponseEntity.ok().body(piezasFound);
     }
 }

@@ -6,6 +6,7 @@ import com.tecMatch.TecMatch.service.fabricante.FabricanteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,5 +29,33 @@ public class FabricanteController {
         }catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping()
+    public ResponseEntity<List<FabricanteDto>> getAllFabricantes(){
+        List<FabricanteDto> allFabricantes = fabricanteService.findAll();
+        return ResponseEntity.ok().body(allFabricantes);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<FabricanteDto> updateFabricante(@PathVariable UUID id, @RequestBody FabricanteToSaveDto fabricanteToUpdate){
+        try{
+            FabricanteDto fabricanteUpdated = fabricanteService.update(id,fabricanteToUpdate);
+            return ResponseEntity.ok().body(fabricanteUpdated);
+        }catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteFabricante(@PathVariable("id") UUID id){
+        try{
+            fabricanteService.delete(id);
+            return ResponseEntity.ok().body("Fabricante con id "+id+" eliminado correctamente");
+        }catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/nombre")
+    public ResponseEntity<List<FabricanteDto>> getFabricanteByNombre(@RequestParam String contains){
+        List<FabricanteDto> socketsFound = fabricanteService.findByNombreContainingIgnoreCase(contains);
+        return ResponseEntity.ok().body(socketsFound);
     }
 }

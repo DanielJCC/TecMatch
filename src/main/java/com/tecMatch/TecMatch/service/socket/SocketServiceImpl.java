@@ -10,6 +10,7 @@ import com.tecMatch.TecMatch.repository.TipoSocketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 @Service
 public class SocketServiceImpl implements SocketService{
@@ -31,7 +32,6 @@ public class SocketServiceImpl implements SocketService{
         Socket socketToSave = socketMapper.ToSaveDtoToEntity(socketToSaveDto);
         socketToSave.setTipoSocket(tipoSocketFound);
         Socket socketSaved = socketRepository.save(socketToSave);
-        SocketDto socketAEnviar = socketMapper.EntityToDto(socketSaved);
         return socketMapper.EntityToDto(socketSaved);
     }
 
@@ -43,7 +43,36 @@ public class SocketServiceImpl implements SocketService{
     }
 
     @Override
-    public void deleteAll() {
-        socketRepository.deleteAll();
+    public List<SocketDto> findAll() {
+        List<Socket> allSockets = socketRepository.findAll();
+        return allSockets.stream().parallel().map(socketMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public SocketDto update(UUID idToUpdate, SocketToSaveDto socketToUpdate) {
+        Socket socketFound = socketRepository.findById(idToUpdate)
+                .orElseThrow(()->new RuntimeException("Socket no encontrado"));
+        socketFound.setNombre(socketToUpdate.nombre() != null ? socketToUpdate.nombre() : socketFound.getNombre());
+        Socket socketUpdated = socketRepository.save(socketFound);
+        return socketMapper.EntityToDto(socketUpdated);
+    }
+
+    @Override
+    public void delete(UUID idToDelete) {
+        Socket socketFound = socketRepository.findById(idToDelete)
+                .orElseThrow(()->new RuntimeException("Socket no encontrado"));
+        socketRepository.delete(socketFound);
+    }
+
+    @Override
+    public List<SocketDto> findByNombreIgnoringCase(String nombre) {
+        List<Socket> socketsFound = socketRepository.findByNombreContainingIgnoreCase(nombre);
+        return socketsFound.stream().parallel().map(socketMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public List<SocketDto> findByTipoSocketId(UUID tipoSocketId) {
+        List<Socket> socketsFound = socketRepository.findByTipoSocketId(tipoSocketId);
+        return socketsFound.stream().parallel().map(socketMapper::EntityToDto).toList();
     }
 }

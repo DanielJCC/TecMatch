@@ -10,5 +10,12 @@ public interface PiezaService {
     PiezaDto save(PiezaToSaveDto piezaToSaveDto);
     PiezaDto findById(UUID idToFind);
     List<PiezaDto> findAll();
+    PiezaDto update(UUID idToUpdate, PiezaToSaveDto piezaToUpdate);
     void deleteById(UUID idToDelete);
+    List<PiezaDto> findByNombreIgnoringCase(String nombre);
+    List<PiezaDto> findByModeloIgnoringCase(String modelo);
+    List<PiezaDto> findByPrecioMenorQue(Float precio);
+    List<PiezaDto> findByVoltaje(Float voltaje);
+    List<PiezaDto> findByFabricanteId(UUID id);
+    List<PiezaDto> findBySocketId(UUID id);
 }

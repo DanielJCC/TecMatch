@@ -8,6 +8,7 @@ import com.tecMatch.TecMatch.repository.FabricanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -32,5 +33,33 @@ public class FabricanteServiceImpl implements FabricanteService{
         Fabricante fabricanteFound = fabricanteRepository.findById(idToFind)
                 .orElseThrow(()->new RuntimeException("Fabricante no encontrado"));
         return fabricanteMapper.EntityToDto(fabricanteFound);
+    }
+
+    @Override
+    public List<FabricanteDto> findAll() {
+        List<Fabricante> allFabricantes = fabricanteRepository.findAll();
+        return allFabricantes.stream().parallel().map(fabricanteMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public FabricanteDto update(UUID idToUpdate, FabricanteToSaveDto fabricanteToUpdate) {
+        Fabricante fabricanteFound = fabricanteRepository.findById(idToUpdate)
+                .orElseThrow(()->new RuntimeException("Fabricante no encontrado"));
+        fabricanteFound.setNombre(fabricanteToUpdate.nombre() != null ? fabricanteToUpdate.nombre() : fabricanteFound.getNombre());
+        Fabricante fabricanteUpdated = fabricanteRepository.save(fabricanteFound);
+        return fabricanteMapper.EntityToDto(fabricanteUpdated);
+    }
+
+    @Override
+    public void delete(UUID idToDelete) {
+        Fabricante fabricanteFound = fabricanteRepository.findById(idToDelete)
+                .orElseThrow(()->new RuntimeException("Fabricante no encontrado"));
+        fabricanteRepository.delete(fabricanteFound);
+    }
+
+    @Override
+    public List<FabricanteDto> findByNombreContainingIgnoreCase(String nombre) {
+        List<Fabricante> fabricantesFound = fabricanteRepository.findByNombreContainingIgnoreCase(nombre);
+        return fabricantesFound.stream().parallel().map(fabricanteMapper::EntityToDto).toList();
     }
 }

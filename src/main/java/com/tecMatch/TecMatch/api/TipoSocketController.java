@@ -6,6 +6,7 @@ import com.tecMatch.TecMatch.service.tipoSocket.TipoSocketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,5 +29,33 @@ public class TipoSocketController {
         }catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping()
+    public ResponseEntity<List<TipoSocketDto>> getAllTipoSocket(){
+        List<TipoSocketDto> allTipoSocket = tipoSocketService.findAll();
+        return ResponseEntity.ok().body(allTipoSocket);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<TipoSocketDto> updateTipoSocket(@PathVariable("id") UUID idToUpdate,@RequestBody TipoSocketToSaveDto tipoSocketToUpdate){
+        try{
+            TipoSocketDto tipoSocketUpdated  = tipoSocketService.update(idToUpdate,tipoSocketToUpdate);
+            return ResponseEntity.ok().body(tipoSocketUpdated);
+        }catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTipoSocket(@PathVariable("id") UUID idToDelete){
+        try{
+            tipoSocketService.delete(idToDelete);
+            return ResponseEntity.ok().body("Tipo socket con id "+idToDelete+" fue correctamente eliminado.");
+        }catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/nombre")
+    public ResponseEntity<List<TipoSocketDto>> getTiposSocketByNombre(@RequestParam String contains){
+        List<TipoSocketDto> tiposSocketfound = tipoSocketService.findByNombreIgnoringCase(contains);
+        return ResponseEntity.ok().body(tiposSocketfound);
     }
 }

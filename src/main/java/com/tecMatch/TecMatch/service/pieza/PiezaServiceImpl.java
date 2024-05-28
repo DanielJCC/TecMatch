@@ -57,9 +57,58 @@ public class PiezaServiceImpl implements PiezaService{
     }
 
     @Override
+    public PiezaDto update(UUID idToUpdate, PiezaToSaveDto piezaToUpdate) {
+        Pieza piezaFound = piezaRepository.findById(idToUpdate)
+                .orElseThrow(()->new RuntimeException("Pieza no encontrada"));
+        piezaFound.setNombre(piezaToUpdate.nombre() != null ? piezaToUpdate.nombre() : piezaFound.getNombre());
+        piezaFound.setModelo(piezaToUpdate.modelo() != null ? piezaToUpdate.modelo() : piezaFound.getModelo());
+        piezaFound.setPrecio(piezaToUpdate.precio() != null ? piezaToUpdate.precio() : piezaFound.getPrecio());
+        piezaFound.setVoltaje(piezaToUpdate.voltaje() != null ? piezaToUpdate.voltaje() : piezaFound.getVoltaje());
+        piezaFound.setImagen(piezaToUpdate.imagen() != null ? piezaToUpdate.imagen() : piezaFound.getImagen());
+        Pieza piezaUpdated = piezaRepository.save(piezaFound);
+        return piezaMapper.EntityToDto(piezaUpdated);
+    }
+
+    @Override
     public void deleteById(UUID idToDelete) {
         Pieza piezaFound = piezaRepository.findById(idToDelete)
                 .orElseThrow(()->new RuntimeException("Pieza no encontrada"));
         piezaRepository.delete(piezaFound);
+    }
+
+    @Override
+    public List<PiezaDto> findByNombreIgnoringCase(String nombre) {
+        List<Pieza> piezasFound = piezaRepository.findByNombreContainingIgnoreCase(nombre);
+        return piezasFound.stream().parallel().map(piezaMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public List<PiezaDto> findByModeloIgnoringCase(String modelo) {
+        List<Pieza> piezasFound = piezaRepository.findByModeloContainingIgnoreCase(modelo);
+        return piezasFound.stream().parallel().map(piezaMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public List<PiezaDto> findByPrecioMenorQue(Float precio) {
+        List<Pieza> piezasFound = piezaRepository.findByPrecioLessThanEqual(precio);
+        return piezasFound.stream().parallel().map(piezaMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public List<PiezaDto> findByVoltaje(Float voltaje) {
+        List<Pieza> piezasFound = piezaRepository.findByVoltaje(voltaje);
+        return piezasFound.stream().parallel().map(piezaMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public List<PiezaDto> findByFabricanteId(UUID id) {
+        List<Pieza> piezasFound = piezaRepository.findByFabricanteId(id);
+        return piezasFound.stream().parallel().map(piezaMapper::EntityToDto).toList();
+    }
+
+    @Override
+    public List<PiezaDto> findBySocketId(UUID id) {
+        List<Pieza> piezasFound = piezaRepository.findBySocketId(id);
+        return piezasFound.stream().parallel().map(piezaMapper::EntityToDto).toList();
     }
 }
