@@ -42,3 +42,13 @@
 | GET    | /api/v1/piezas/fabricante/{id}        | Obtiene piezas con el id de su fabricante                                      | ---------------                       |
 | PUT    | /api/v1/piezas/{id}                   | Actualiza una pieza existente                                                  | ![img.png](images/BodyPiezaPut.png)   |
 | DELETE | /api/v1/piezas/{id}                   | Elimina una pieza existente                                                    | ---------------                       |
+### Usuarios
+| Método | Ruta                   | Descipción                                  | Body                                    |
+|--------|------------------------|---------------------------------------------|-----------------------------------------|
+| POST   | /api/v1/usuarios       | Crea un usuario                             | ![img.png](images/BodyUsuarioPost.png)  |
+| POST   | /api/v1/usuarios/login | Logea a un usuario verificando credenciales | ![img.png](images/BodyUsuarioLogin.png) |
+| GET    | /api/v1/usuarios       | Obtiene todos los usuarios                  | ---------------                         |
+| GET    | /api/v1/usuarios/{id}  | Obtiene un usuario por ID                   | ---------------                         |
+| PUT    | /api/v1/usuarios/{id}  | Actualiza un usuario existente              | ![img.png](images/BodyUsuarioPut.png)   |
+| DELETE | /api/v1/usuarios/{id}  | Elimina un usuario existente                | ---------------                         |
+**¡CONSIDERACIÓN IMPORTANTE!: Por ahora al usuario solo se le puede actualizar el correo y el nombre de usuario**

@@ -18,9 +18,11 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String correo_electronico;
+    @Column(unique = true)
+    private String correoElectronico;
     private String password;
-    private String nombre_usuario;
+    @Column(unique = true)
+    private String nombreUsuario;
     private Boolean perm_admin;
 
     @OneToMany(mappedBy = "usuario",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
