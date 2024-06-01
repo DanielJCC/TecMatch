@@ -52,3 +52,12 @@
 | PUT    | /api/v1/usuarios/{id}  | Actualiza un usuario existente              | ![img.png](images/BodyUsuarioPut.png)   |
 | DELETE | /api/v1/usuarios/{id}  | Elimina un usuario existente                | ---------------                         |
 **¡CONSIDERACIÓN IMPORTANTE!: Por ahora al usuario solo se le puede actualizar el correo y el nombre de usuario**
+### RAMs
+| Método | Ruta                     | Descipción                                            | Body                               |
+|--------|--------------------------|-------------------------------------------------------|------------------------------------|
+| POST   | /api/v1/RAMs             | Crea una RAM                                          | ![img.png](images/BodyRamPost.png) |
+| GET    | /api/v1/RAMs             | Obtiene todas las RAMS                                | ---------------                    |
+| GET    | /api/v1/RAMs/{id}        | Obtiene una RAM por ID                                | ---------------                    |
+| GET    | /api/v1/RAMs/pieza/{id}  | Obtiene una RAM por el ID de la Pieza                 | ---------------                    |
+| PUT    | /api/v1/RAMs/{id}        | Actualiza una RAM existente **(NO IMPLEMENTADO AÚN)** | vacío por el momento               |
+| DELETE | /api/v1/RAMs/{id}        | Elimina una RAM existente                             | ---------------                    |

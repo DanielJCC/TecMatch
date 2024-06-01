@@ -1,5 +1,6 @@
 package com.tecMatch.TecMatch.entities;
 
+import com.tecMatch.TecMatch.utils.TipoPieza;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,8 @@ public class Pieza {
     private Float precio;
     private Float voltaje;
     private String imagen;
+    @Enumerated(EnumType.STRING)
+    private TipoPieza tipoPieza;
 
     @ManyToOne
     @JoinColumn(name = "fabricante")
@@ -31,6 +34,7 @@ public class Pieza {
     @ManyToOne
     @JoinColumn(name = "socket")
     private Socket socket;
+
 
     @OneToMany(mappedBy = "pieza",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<PiezaDeseada> piezasDeseadas;
