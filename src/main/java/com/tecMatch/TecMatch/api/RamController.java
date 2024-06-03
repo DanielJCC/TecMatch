@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/RAMs")
+@RequestMapping("/api/v1/RAM")
 public class RamController {
     private final RamService ramService;
     public RamController(RamService ramService){this.ramService = ramService;}
