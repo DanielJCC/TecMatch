@@ -13,5 +13,5 @@ public interface UsuarioService {
     List<UsuarioDto> findAll();
     UsuarioDto update(UUID idToFind, UsuarioToSaveDto usuarioToSaveDto);
     void delete(UUID idToDelete);
-    Boolean logIn(UsuarioLogInDto usuarioLogIn);
+    UsuarioDto logIn(UsuarioLogInDto usuarioLogIn);
 }

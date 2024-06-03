@@ -56,16 +56,12 @@ public class UsuarioController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<?> logInUsuario(@RequestBody UsuarioLogInDto usuarioLogInDto){
+    public ResponseEntity<UsuarioDto> logInUsuario(@RequestBody UsuarioLogInDto usuarioLogInDto){
         try {
-            boolean isAuthenticated = usuarioService.logIn(usuarioLogInDto);
-            if (isAuthenticated){
-                return ResponseEntity.ok("SUCCESSFUL");
-            }else{
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("DENIED");
-            }
+            UsuarioDto usuarioLogged = usuarioService.logIn(usuarioLogInDto);
+            return ResponseEntity.ok().body(usuarioLogged);
         }catch (RuntimeException e){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 }

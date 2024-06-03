@@ -64,9 +64,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Boolean logIn(UsuarioLogInDto usuarioLogIn) {
+    public UsuarioDto logIn(UsuarioLogInDto usuarioLogIn) {
         Usuario usuarioFound = usuarioRepository.findByNombreUsuario(usuarioLogIn.nombreUsuario())
                 .orElseThrow(()->new RuntimeException("Nombre de usuario no fue encontrado"));
-        return passwordEncoder.matches(usuarioLogIn.password(), usuarioFound.getPassword());
+        if(passwordEncoder.matches(usuarioLogIn.password(),usuarioFound.getPassword())){
+            return usuarioMapper.EntityToDto(usuarioFound);
+        }else{
+            throw new RuntimeException("Contraseña incorrecta");
+        }
     }
 }
