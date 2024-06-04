@@ -54,7 +54,15 @@ public class ReviewController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<ReviewDto> updateReview(@PathVariable UUID id, @RequestBody ReviewToSaveDto reviewToSaveDto){
+        try {
+            ReviewDto reviewUpdated = reviewService.update(id, reviewToSaveDto);
+            return ResponseEntity.ok().body(reviewUpdated);
+        } catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReview(@PathVariable UUID id){
         try {

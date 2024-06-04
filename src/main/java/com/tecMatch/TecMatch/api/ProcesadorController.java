@@ -49,7 +49,15 @@ public class ProcesadorController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<ProcesadorDto> updateProcesador(@PathVariable UUID id, @RequestBody ProcesadorToSaveDto procesadorToSaveDto){
+        try {
+            ProcesadorDto procesadorUpdated = procesadorService.update(id, procesadorToSaveDto);
+            return ResponseEntity.ok().body(procesadorUpdated);
+        } catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProcesador(@PathVariable UUID id) {
         try {

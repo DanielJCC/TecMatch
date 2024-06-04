@@ -49,7 +49,15 @@ public class PlacaController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<PlacaDto> updatePlaca(@PathVariable UUID id, @RequestBody PlacaToSaveDto placaToSaveDto){
+        try {
+            PlacaDto placaUpdated = placaService.update(id, placaToSaveDto);
+            return ResponseEntity.ok().body(placaUpdated);
+        } catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePlaca(@PathVariable UUID id){
         try {

@@ -53,48 +53,48 @@
 | DELETE | /api/v1/usuarios/{id}  | Elimina un usuario existente                | ---------------                         |
 **¡CONSIDERACIÓN IMPORTANTE!: Por ahora al usuario solo se le puede actualizar el correo y el nombre de usuario**
 ### RAMs
-| Método | Ruta                   | Descipción                                            | Body                               |
-|--------|------------------------|-------------------------------------------------------|------------------------------------|
-| POST   | /api/v1/RAM            | Crea una RAM                                          | ![img.png](images/BodyRamPost.png) |
-| GET    | /api/v1/RAM            | Obtiene todas las RAMS                                | ---------------                    |
-| GET    | /api/v1/RAM/{id}       | Obtiene una RAM por ID                                | ---------------                    |
-| GET    | /api/v1/RAM/pieza/{id} | Obtiene una RAM por el ID de la Pieza                 | ---------------                    |
-| PUT    | /api/v1/RAM/{id}       | Actualiza una RAM existente **(NO IMPLEMENTADO AÚN)** | vacío por el momento               |
-| DELETE | /api/v1/RAM/{id}       | Elimina una RAM existente                             | ---------------                    |
+| Método | Ruta                   | Descipción                            | Body                                         |
+|--------|------------------------|---------------------------------------|----------------------------------------------|
+| POST   | /api/v1/RAM            | Crea una RAM                          | ![img.png](images/BodyRamPost.png)           |
+| GET    | /api/v1/RAM            | Obtiene todas las RAMS                | ---------------                              |
+| GET    | /api/v1/RAM/{id}       | Obtiene una RAM por ID                | ---------------                              |
+| GET    | /api/v1/RAM/pieza/{id} | Obtiene una RAM por el ID de la Pieza | ---------------                              |
+| PUT    | /api/v1/RAM/{id}       | Actualiza una RAM existente           | Igual que el body del POST pero sin "pieza"  |
+| DELETE | /api/v1/RAM/{id}       | Elimina una RAM existente             | ---------------                              |
 ### Procesadores
-| Método | Ruta                          | Descipción                                                  | Body                 |
-|--------|-------------------------------|-------------------------------------------------------------|----------------------|
-| POST   | /api/v1/PROCESADOR            | Crea un procesador                                          | ![img.png](images/BodyProcesadorPost.png)  |
-| GET    | /api/v1/PROCESADOR            | Obtiene todos los procesadores                              | ---------------      |
-| GET    | /api/v1/PROCESADOR/{id}       | Obtiene un procesador por ID                                | ---------------      |
-| GET    | /api/v1/PROCESADOR/pieza/{id} | Obtiene un procesador por el ID de la Pieza                 | ---------------      |
-| PUT    | /api/v1/PROCESADOR/{id}       | Actualiza un procesador existente **(NO IMPLEMENTADO AÚN)** | vacío por el momento |
-| DELETE | /api/v1/PROCESADOR/{id}       | Elimina un procesador existente                             | ---------------      |
+| Método | Ruta                          | Descipción                                  | Body                                         |
+|--------|-------------------------------|---------------------------------------------|----------------------------------------------|
+| POST   | /api/v1/PROCESADOR            | Crea un procesador                          | ![img.png](images/BodyProcesadorPost.png)    |
+| GET    | /api/v1/PROCESADOR            | Obtiene todos los procesadores              | ---------------                              |
+| GET    | /api/v1/PROCESADOR/{id}       | Obtiene un procesador por ID                | ---------------                              |
+| GET    | /api/v1/PROCESADOR/pieza/{id} | Obtiene un procesador por el ID de la Pieza | ---------------                              |
+| PUT    | /api/v1/PROCESADOR/{id}       | Actualiza un procesador existente           | Igual que el body del POST pero sin "pieza"  |
+| DELETE | /api/v1/PROCESADOR/{id}       | Elimina un procesador existente             | ---------------                              |
 ### Gráficas
-| Método | Ruta                       | Descipción                                                | Body                     |
-|--------|----------------------------|-----------------------------------------------------------|--------------------------|
-| POST   | /api/v1/GRAFICA            | Crea una gráfica                                          | ![img_1.png](images/BodyGraficaPost.png)  |
-| GET    | /api/v1/GRAFICA            | Obtiene todas las gráficas                                | ---------------          |
-| GET    | /api/v1/GRAFICA/{id}       | Obtiene una gráfica por ID                                | ---------------          |
-| GET    | /api/v1/GRAFICA/pieza/{id} | Obtiene una gráfica por el ID de la Pieza                 | ---------------          |
-| PUT    | /api/v1/GRAFICA/{id}       | Actualiza una gráfica existente **(NO IMPLEMENTADO AÚN)** | vacío por el momento     |
-| DELETE | /api/v1/GRAFICA/{id}       | Elimina una gráfica existente                             | ---------------          |
+| Método | Ruta                       | Descipción                                | Body                                         |
+|--------|----------------------------|-------------------------------------------|----------------------------------------------|
+| POST   | /api/v1/GRAFICA            | Crea una gráfica                          | ![img_1.png](images/BodyGraficaPost.png)     |
+| GET    | /api/v1/GRAFICA            | Obtiene todas las gráficas                | ---------------                              |
+| GET    | /api/v1/GRAFICA/{id}       | Obtiene una gráfica por ID                | ---------------                              |
+| GET    | /api/v1/GRAFICA/pieza/{id} | Obtiene una gráfica por el ID de la Pieza | ---------------                              |
+| PUT    | /api/v1/GRAFICA/{id}       | Actualiza una gráfica existente           | Igual que el body del POST pero sin "pieza"  |
+| DELETE | /api/v1/GRAFICA/{id}       | Elimina una gráfica existente             | ---------------                              |
 ### Placas
-| Método | Ruta                     | Descipción                                              | Body                     |
-|--------|--------------------------|---------------------------------------------------------|--------------------------|
-| POST   | /api/v1/PLACA            | Crea una placa                                          | ![img_2.png](images/BodyPlacaPost.png)  |
-| GET    | /api/v1/PLACA            | Obtiene todas las placas                                | ---------------          |
-| GET    | /api/v1/PLACA/{id}       | Obtiene una placa por ID                                | ---------------          |
-| GET    | /api/v1/PLACA/pieza/{id} | Obtiene una placa por el ID de la Pieza                 | ---------------          |
-| PUT    | /api/v1/PLACA/{id}       | Actualiza una placa existente **(NO IMPLEMENTADO AÚN)** | vacío por el momento     |
-| DELETE | /api/v1/PLACA/{id}       | Elimina una placa existente                             | ---------------          |
+| Método | Ruta                     | Descipción                              | Body                                         |
+|--------|--------------------------|-----------------------------------------|----------------------------------------------|
+| POST   | /api/v1/PLACA            | Crea una placa                          | ![img_2.png](images/BodyPlacaPost.png)       |
+| GET    | /api/v1/PLACA            | Obtiene todas las placas                | ---------------                              |
+| GET    | /api/v1/PLACA/{id}       | Obtiene una placa por ID                | ---------------                              |
+| GET    | /api/v1/PLACA/pieza/{id} | Obtiene una placa por el ID de la Pieza | ---------------                              |
+| PUT    | /api/v1/PLACA/{id}       | Actualiza una placa existente           | Igual que el body del POST pero sin "pieza"  |
+| DELETE | /api/v1/PLACA/{id}       | Elimina una placa existente             | ---------------                              |
 ### Reseñas
-| Método | Ruta                                             | Descipción                                               | Body                                   |
-|--------|--------------------------------------------------|----------------------------------------------------------|----------------------------------------|
-| POST   | /api/v1/reviews                                  | Crea una reseña                                          | ![img.png](images/BodyReviewPost.png)|
-| GET    | /api/v1/reviews                                  | Obtiene todas las reseñas                                | ---------------                        |
-| GET    | /api/v1/reviews/{id}                             | Obtiene una reseña por ID                                | ---------------                        |
-| GET    | /api/v1/reviews/pieza/{id}                       | Obtiene reseñas por el ID de la Pieza                    | ---------------                        |
-| GET    | /api/v1/reviews/pieza/{id}/calificacion-promedio | Obtiene calificacion promedio de las reviews de la pieza | ---------------                        |
-| PUT    | /api/v1/reviews/{id}                             | Actualiza una placa existente **(NO IMPLEMENTADO AÚN)**  | vacío por el momento                   |
-| DELETE | /api/v1/reviews/{id}                             | Elimina una placa existente                              | ---------------                        |
+| Método | Ruta                                             | Descipción                                               | Body                                                      |
+|--------|--------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------|
+| POST   | /api/v1/reviews                                  | Crea una reseña                                          | ![img.png](images/BodyReviewPost.png)                     |
+| GET    | /api/v1/reviews                                  | Obtiene todas las reseñas                                | ---------------                                           |
+| GET    | /api/v1/reviews/{id}                             | Obtiene una reseña por ID                                | ---------------                                           |
+| GET    | /api/v1/reviews/pieza/{id}                       | Obtiene reseñas por el ID de la Pieza                    | ---------------                                           |
+| GET    | /api/v1/reviews/pieza/{id}/calificacion-promedio | Obtiene calificacion promedio de las reviews de la pieza | ---------------                                           |
+| PUT    | /api/v1/reviews/{id}                             | Actualiza una reseña existente                           | Igual que el body del POST pero sin "pieza" ni "usuario"  |
+| DELETE | /api/v1/reviews/{id}                             | Elimina una reseña existente                             | ---------------                                           |

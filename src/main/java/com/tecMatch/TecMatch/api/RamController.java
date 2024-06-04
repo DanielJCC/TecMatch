@@ -43,6 +43,15 @@ public class RamController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<RamDto> updateRam(@PathVariable UUID id, @RequestBody RamToSaveDto ramToSaveDto){
+        try {
+            RamDto ramUpdated = ramService.update(id, ramToSaveDto);
+            return ResponseEntity.ok().body(ramUpdated);
+        } catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteRam(@PathVariable UUID id){
         try {

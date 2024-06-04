@@ -67,7 +67,11 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public ReviewDto update(UUID idToUpdate, ReviewToSaveDto reviewToSaveDto) {
-        return null;
+        Review reviewFound = reviewRepository.findById(idToUpdate)
+                .orElseThrow(() -> new RuntimeException("Review no encontrada"));
+        reviewMapper.updateReviewFromToSaveDto(reviewToSaveDto,reviewFound);
+        Review reviewUpdated = reviewRepository.save(reviewFound);
+        return reviewMapper.EntityToDto(reviewUpdated);
     }
 
     @Override

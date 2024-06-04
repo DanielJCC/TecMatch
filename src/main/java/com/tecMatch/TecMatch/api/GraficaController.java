@@ -44,6 +44,15 @@ public class GraficaController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<GraficaDto> updateGrafica(@PathVariable UUID id, @RequestBody GraficaToSaveDto graficaToSaveDto){
+        try {
+            GraficaDto graficaUpdated = graficaService.update(id, graficaToSaveDto);
+            return ResponseEntity.ok().body(graficaUpdated);
+        }catch (RuntimeException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteGrafica(@PathVariable UUID id){
         try {

@@ -50,7 +50,11 @@ public class RamServiceImpl implements RamService{
 
     @Override
     public RamDto update(UUID idToUpdate, RamToSaveDto ramToUpdateDto) {
-        return null;
+        Ram ramFound = ramRepository.findById(idToUpdate)
+                .orElseThrow(()->new RuntimeException("Ram no encontrada"));
+        ramMapper.updateRamFromToSaveDto(ramToUpdateDto,ramFound);
+        Ram ramUpdated = ramRepository.save(ramFound);
+        return ramMapper.EntityToDto(ramUpdated);
     }
 
     @Override

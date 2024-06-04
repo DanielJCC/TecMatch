@@ -56,7 +56,12 @@ public class PlacaServiceImpl implements PlacaService{
 
     @Override
     public PlacaDto update(UUID idToUpdate, PlacaToSaveDto placaToSaveDto) {
-        return null;
+        Placa placaFound = placaRepository.findById(idToUpdate)
+                .orElseThrow(() -> new RuntimeException("Placa no encontrada"));
+        placaMapper.updatePlacaFromToSaveDto(placaToSaveDto, placaFound);
+        Placa placaUpdated = placaRepository.save(placaFound);
+        return placaMapper.EntityToDto(placaUpdated);
+
     }
 
     @Override

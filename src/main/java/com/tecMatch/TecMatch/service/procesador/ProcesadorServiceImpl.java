@@ -56,7 +56,12 @@ public class ProcesadorServiceImpl implements ProcesadorService{
 
     @Override
     public ProcesadorDto update(UUID idToUpdate, ProcesadorToSaveDto procesadorToSaveDto) {
-        return null;
+        Procesador procesadorFound = procesadorRepository.findById(idToUpdate)
+                .orElseThrow(() -> new RuntimeException("Procesador no encontrado"));
+        procesadorMapper.updateProcesadorFromToSaveDto(procesadorToSaveDto,procesadorFound);
+        Procesador procesadorUpdated = procesadorRepository.save(procesadorFound);
+        return procesadorMapper.EntityToDto(procesadorUpdated);
+
     }
 
     @Override

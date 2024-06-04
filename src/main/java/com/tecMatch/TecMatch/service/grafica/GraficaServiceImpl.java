@@ -55,7 +55,12 @@ public class GraficaServiceImpl implements GraficaService{
 
     @Override
     public GraficaDto update(UUID idToUpdate, GraficaToSaveDto graficaToSaveDto) {
-        return null;
+        Grafica graficaFound = graficaRepository.findById(idToUpdate)
+                .orElseThrow(() -> new RuntimeException("Gráfica no encontrada"));
+        graficaMapper.updateGraficaFromToSaveDto(graficaToSaveDto, graficaFound);
+        Grafica graficaUpdated = graficaRepository.save(graficaFound);
+        return graficaMapper.EntityToDto(graficaUpdated);
+
     }
 
     @Override
