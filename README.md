@@ -98,3 +98,15 @@
 | GET    | /api/v1/reviews/pieza/{id}/calificacion-promedio | Obtiene calificacion promedio de las reviews de la pieza | ---------------                                           |
 | PUT    | /api/v1/reviews/{id}                             | Actualiza una reseña existente                           | Igual que el body del POST pero sin "pieza" ni "usuario"  |
 | DELETE | /api/v1/reviews/{id}                             | Elimina una reseña existente                             | ---------------                                           |
+### Pieza en lista de deseos
+| Método | Ruta                                 | Descipción                                            | Body                         |
+|--------|--------------------------------------|-------------------------------------------------------|------------------------------|
+| POST   | /api/v1/piezas-deseadas              | Agrega una pieza a la lista de deseos                 | ![img.png](images/img.png)   |
+| GET    | /api/v1/piezas-deseadas/usuario/{id} | Obtiene las piezas deseadas de un usuario en concreto | ---------------              |
+| DELETE | /api/v1/piezas-deseadas/{id}         | Elimina una pieza de la lista de deseos               | ---------------              |
+### Pieza en lista de deseos
+| Método | Ruta                                              | Descipción                                                            | Body                           |
+|--------|---------------------------------------------------|-----------------------------------------------------------------------|--------------------------------|
+| POST   | /api/v1/piezas-en-lista-contruccion               | Agrega una pieza a la lista de construcción                           | ![img.png](images/img.png)     |
+| GET    | /api/v1/piezas-en-lista-construccion/usuario/{id} | Obtiene las piezas en lista de construcción de un usuario en concreto | ---------------                |
+| DELETE | /api/v1/piezas-en-lista-construccion/{id}         | Elimina una pieza de la lista de construcción                         | ---------------                |
