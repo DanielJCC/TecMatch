@@ -104,7 +104,7 @@
 | POST   | /api/v1/piezas-deseadas              | Agrega una pieza a la lista de deseos                 | ![img.png](images/img.png)   |
 | GET    | /api/v1/piezas-deseadas/usuario/{id} | Obtiene las piezas deseadas de un usuario en concreto | ---------------              |
 | DELETE | /api/v1/piezas-deseadas/{id}         | Elimina una pieza de la lista de deseos               | ---------------              |
-### Pieza en lista de deseos
+### Pieza en lista de construcción
 | Método | Ruta                                              | Descipción                                                            | Body                           |
 |--------|---------------------------------------------------|-----------------------------------------------------------------------|--------------------------------|
 | POST   | /api/v1/piezas-en-lista-contruccion               | Agrega una pieza a la lista de construcción                           | ![img.png](images/img.png)     |

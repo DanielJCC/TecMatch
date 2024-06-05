@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface PiezaDeseadaRepository extends JpaRepository<PiezaDeseada, UUID> {
     List<PiezaDeseada> findByUsuarioId(UUID idUsuario);
+    boolean existsByUsuarioIdAndPiezaId(UUID idUsuario, UUID idPieza);
 }

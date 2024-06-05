@@ -18,8 +18,12 @@ public class PiezaDeseadaController {
     }
     @PostMapping()
     public ResponseEntity<PiezaDeseadaDto> createPiezaDeseada(@RequestBody PiezaDeseadaToSaveDto piezaDeseadaToSave){
-        PiezaDeseadaDto piezaDeseadaSaved = piezaDeseadaService.save(piezaDeseadaToSave);
-        return ResponseEntity.ok().body(piezaDeseadaSaved);
+        try{
+            PiezaDeseadaDto piezaDeseadaSaved = piezaDeseadaService.save(piezaDeseadaToSave);
+            return ResponseEntity.ok().body(piezaDeseadaSaved);
+        }catch (RuntimeException e){
+            return ResponseEntity.status(400).build();
+        }
     }
     @GetMapping("/usuario/{id}")
     public ResponseEntity<List<PiezaDeseadaDto>> findByUsuarioId(@PathVariable("id") UUID usuarioId){

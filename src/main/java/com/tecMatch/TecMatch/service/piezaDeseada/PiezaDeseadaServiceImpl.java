@@ -34,6 +34,9 @@ public class PiezaDeseadaServiceImpl implements PiezaDeseadaService{
                 .orElseThrow(()->new RuntimeException("Usuario no fue encontrado"));
         Pieza piezaFound = piezaRepository.findById(piezaDeseadaToSaveDto.pieza().id())
                 .orElseThrow(()->new RuntimeException("Pieza no fue encontrada"));
+        if(piezaDeseadaRepository.existsByUsuarioIdAndPiezaId(usuarioFound.getId(),piezaFound.getId())){
+            throw new RuntimeException("La pieza ya se encuentra en la lista de deseadas.");
+        }
         PiezaDeseada piezaToSave = piezaDeseadaMapper.ToSaveDtoToEntity(piezaDeseadaToSaveDto);
         piezaToSave.setPieza(piezaFound);
         piezaToSave.setUsuario(usuarioFound);
